@@ -2,6 +2,17 @@
   text-align: center;
 }
 
+.custom-carousel {
+  width: 1400px; /* Adjust this width as needed */
+  margin: 0 auto; /* Center the carousel */
+}
+
+.carousel-image {
+  width: 100%;
+  height: 400px;
+  display: block;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +46,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.content-section {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
 }
