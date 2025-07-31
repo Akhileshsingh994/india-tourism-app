@@ -19,9 +19,10 @@ text-align: center;
 `;
 
 const Image = styled.img`
-width: 100%;
-height: auto;
+width: 550px;
+height: 350px;
 border-radius: 8px;
+object-fit: cover;
 `;
 
 const Button = styled.button`
