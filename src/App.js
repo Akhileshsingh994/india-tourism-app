@@ -19,7 +19,6 @@ import Travel from './components/Travel';
 import Destinations from './components/Destinations';
 import Experience from './components/Experience';
 
-// Import the custom CSS file
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -92,7 +91,7 @@ const App = () => {
             <Carousel.Item>
               <img
                 className="d-block w-100 carousel-image"
-                src="https://lh3.googleusercontent.com/ci/AL18g_QFNagAs11SFKIsB_1O1immbOm838MkBGmB0ggbf0omfCnFhd0xOz82M6TcwGjbDMwRa9tdW5WM=s1200"
+                src="https://media.geeksforgeeks.org/wp-content/uploads/20240105125539/4th.jpg"
                 alt="Fifth item"
               />
             </Carousel.Item>
@@ -100,12 +99,12 @@ const App = () => {
               <img
                 className="d-block w-100 carousel-image"
                 src="https://cdn.pixabay.com/photo/2016/11/21/14/45/blue-city-1845779_960_720.jpg"
-                alt="Third slide"
+                alt="Sixth slide"
               />
             </Carousel.Item>
           </Carousel>
           <br />
-          {/* Content of your app (unchanged) */}
+          {}
           <Routes>
             <RouteElement path="/" element={<DestinationList />} />
             <RouteElement path="/destination/:id" element={<DestinationDetail />} />

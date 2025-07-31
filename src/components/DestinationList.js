@@ -1,4 +1,3 @@
-// DestinationList.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -45,7 +44,7 @@ const DestinationList = () => {
 	const [addedToFavorites, setAddedToFavorites] = useState(new Set());
 
   useEffect(() => {
-    // Create a map of favorites for quick lookup
+
     const favMap = new Map();
     favorites.forEach(favId => favMap.set(favId, true));
     setFavoritesMap(favMap);

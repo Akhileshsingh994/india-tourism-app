@@ -1,4 +1,3 @@
-// src/Favorites.js
 import React from 'react';
 import { useFavorites } from './FavoritesContext';
 import styled from 'styled-components';

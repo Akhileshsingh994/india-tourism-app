@@ -1,4 +1,3 @@
-// Destinations.js
 const Destinations = [
 	{
 		id: 1, 
@@ -9,7 +8,7 @@ const Destinations = [
 		rating: 4.5,
 		bestTime: 'October to February'
 	},
-	// Add more destinations
+
 	{
 		id: 2,
 		name: 'Jaipur City Palace',
@@ -19,7 +18,6 @@ const Destinations = [
 		rating: 4.5,
 		bestTime: 'October to February',
 	},
-	// 18 more destinations...
 	{
 		id: 3,
 		name: 'Goa Beaches',
