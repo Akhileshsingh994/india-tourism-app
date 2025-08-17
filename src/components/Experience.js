@@ -80,7 +80,7 @@ const Experience = () => {
     description: '',
     image: '',
   });
-  const [validated, setValidated] = useState(false);
+  const [ setValidated] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -121,10 +121,10 @@ const Experience = () => {
       </p>
       
       <h4 className="mb-3">Recent Experiences</h4>
-      <div className="row">
+      <div className="row fade-in">
         {experiences.map((exp) => (
-          <div className="col-md-6 mb-4" key={exp.id}>
-            <div className="card h-100 shadow-sm">
+          <div className="col-md-6 mb-4 slide-in-up" key={exp.id}>
+            <div className="card h-100 shadow-sm animated-card">
               <img
                 src={exp.image}
                 className="card-img-top"
@@ -143,7 +143,7 @@ const Experience = () => {
       
       <hr className="my-5" />
       
-      <ExperienceContainer>
+      <ExperienceContainer className="fade-in slide-in-up">
         <h2>Share Your Experience</h2>
         <Form onSubmit={handleSubmit}>
           <Label htmlFor="name">Name</Label>
@@ -185,7 +185,7 @@ const Experience = () => {
             onChange={handleChange} 
           />
           
-          <SubmitButton type="submit">Submit Experience</SubmitButton>
+          <SubmitButton type="submit" className="animated-btn">Submit Experience</SubmitButton>
         </Form>
       </ExperienceContainer>
     </div>

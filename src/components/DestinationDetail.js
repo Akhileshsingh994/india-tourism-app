@@ -6,8 +6,11 @@ import { useParams } from 'react-router-dom';
 
 
 const DetailContainer = styled.div`
+text-align: center;
 max-width: 600px;
 margin: auto;
+border-radius: 8px;
+margin-bottom: 20px;
 `;
 
 const DetailImage = styled.img`
@@ -24,6 +27,7 @@ border: none;
 padding: 10px;
 border-radius: 4px;
 cursor: pointer;
+margin-bottom: 10px;
 `;
 
 const DestinationDetail = () => {
@@ -46,7 +50,7 @@ const DestinationDetail = () => {
 	  };
 
 	return (
-		<DetailContainer>
+		<DetailContainer className="fade-in animated-card">
 			<h2>{destination.name}</h2>
 			<DetailImage src={destination.image}
 				alt={destination.name} />
@@ -58,7 +62,7 @@ const DestinationDetail = () => {
 				Best time to visit:
 				{destination.bestTime || 'Not specified'}
 			</p>
-			<DetailButton onClick={handleBookNow}>Book Now</DetailButton>
+			<DetailButton className="animated-btn" onClick={handleBookNow}>Book Now</DetailButton>
 		</DetailContainer>
 	);
 };

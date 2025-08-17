@@ -28,8 +28,8 @@ const App = () => {
       <Router>
         <div>
           <Navbar className="custom-navbar" expand="lg">
-            <Navbar.Brand className="brand-heading">
-              Let's explore Heaven
+            <Navbar.Brand className="brand-heading" style={{ marginLeft: '20px' }}>
+              MysticIndiaTours
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -58,11 +58,12 @@ const App = () => {
             </Navbar.Collapse>
           </Navbar>
 
+          
           {/* Carousel */}
-          <Carousel className="custom-carousel flex w-[1400px] ">
+          <Carousel className="custom-carousel">
             <Carousel.Item>
               <img
-                className=" carousel-image w-full"
+                className="carousel-image"
                 src="https://cdn.pixabay.com/photo/2023/08/13/14/42/mountain-8187621_1280.jpg"
                 alt="First slide"
               />
@@ -103,6 +104,7 @@ const App = () => {
               />
             </Carousel.Item>
           </Carousel>
+          
           <br />
           {}
           <Routes>

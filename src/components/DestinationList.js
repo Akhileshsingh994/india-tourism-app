@@ -13,25 +13,30 @@ justify-content: space-around;
 flex-wrap: wrap;
 `;
 
+
 const ListItem = styled.li`
-margin-bottom: 20px;
-text-align: center;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 8px;
 `;
+
 
 const Image = styled.img`
-width: 550px;
-height: 350px;
-border-radius: 8px;
-object-fit: cover;
+  width: 550px;
+  height: 350px;
+  border-radius: 8px;
+  object-fit: cover;
 `;
 
+
 const Button = styled.button`
-background: #3498db;
-color: #fff;
-border: none;
-padding: 5px 10px;
-border-radius: 4px;
-cursor: pointer;
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
 `;
 
 const AddedButton = styled(Button)`
@@ -39,24 +44,21 @@ const AddedButton = styled(Button)`
 `;
 
 const DestinationList = () => {
-
-	const { addFavorite, removeFavorite, favorites } = useFavorites(); // Access favorites and functions from FavoritesContext
-	const [favoritesMap, setFavoritesMap] = useState(new Map());
-	const [addedToFavorites, setAddedToFavorites] = useState(new Set());
+  const { addFavorite, removeFavorite, favorites } = useFavorites();
+  const [favoritesMap, setFavoritesMap] = useState(new Map());
+  const [addedToFavorites, setAddedToFavorites] = useState(new Set());
 
   useEffect(() => {
-
     const favMap = new Map();
     favorites.forEach(favId => favMap.set(favId, true));
     setFavoritesMap(favMap);
-
-	const addedSet = new Set(favorites.map(fav => fav.id));
+    const addedSet = new Set(favorites.map(fav => fav.id));
     setAddedToFavorites(addedSet);
   }, [favorites]);
 
   const isFavorite = (id) => favoritesMap.has(id);
 
-  
+
   const handleToggleFavorite = (destination) => {
     const { id } = destination;
     if (isFavorite(id)) {
@@ -68,46 +70,34 @@ const DestinationList = () => {
       });
     } else {
       addFavorite(destination);
-      setAddedToFavorites(prev => new Set([...prev, id]));
+      setAddedToFavorites(prev => new Set(prev).add(id));
     }
   };
 
-  const isAddedToFavorites = (id) => addedToFavorites.has(id);
-
-	
-	return (
-		<div style={
-			{
-				backgroundColor: "#c8e2fa",
-				padding: "2%"
-			}
-		}>
-			<List>
-				{destinations.map((destination) => (
-					<ListItem key={destination.id}>
-						<Link to={`/destination/${destination.id}`}
-							style={
-								{
-									textDecoration: 'none',
-									color: '#333'
-								}}>
-							<Image src={destination.image}
-								alt={destination.name} />
-							<h3>{destination.name}</h3>
-							<h5>{destination.bestTime}</h5>
-							<h6>{destination.rating}</h6>
-							</Link>
-            {isAddedToFavorites(destination.id) ? (
-              <AddedButton>Added to Favorites</AddedButton>
-            ) : (
-              <Button onClick={() => handleToggleFavorite(destination)}>
-                {isFavorite(destination.id) ? 'Remove from Favorites' : 'Add to Favorites'}
-              </Button>
-            )}
-          </ListItem>
-        ))}
-      </List>
-		</div>
-	);
+  return (
+    <List className="fade-in ">
+      {destinations.map((destination) => (
+        <ListItem key={destination.id} className="animated-card slide-in-up">
+          <Link to={`/destination/${destination.id}`} style={{ textDecoration: 'none', color: '#333' }}>
+            <Image src={destination.image} alt={destination.name} />
+            <h3>{destination.name}</h3>
+            <h5>{destination.bestTime}</h5>
+            <h6>{destination.rating}</h6>
+          </Link>
+          <p>{destination.description}</p>
+          {addedToFavorites.has(destination.id) ? (
+            <AddedButton className="animated-btn" onClick={() => handleToggleFavorite(destination)}>
+              Added to Favorites
+            </AddedButton>
+          ) : (
+            <Button className="animated-btn" onClick={() => handleToggleFavorite(destination)}>
+              {isFavorite(destination.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+            </Button>
+          )}
+        </ListItem>
+      ))}
+    </List>
+  );
 };
+
 export default DestinationList;

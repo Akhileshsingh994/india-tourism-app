@@ -9,6 +9,7 @@ const ContactContainer = styled.div`
   background-color: #fff;
   border-radius: 8px;
   margin-top: 50px;
+  margin-bottom: 50px;
 `;
 
 const Form = styled.form`
@@ -70,41 +71,45 @@ const ContactForm = () => {
     // For now, just display the form data in an alert
     alert(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
 
+
     // Here you can integrate with an API to handle form submission
-    // Example:
-    // fetch('/api/contact', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // }).then(response => {
-    //   if (response.ok) {
-    //     alert('Message sent successfully!');
-    //     setFormData({ name: '', email: '', message: '' });
-    //   } else {
-    //     alert('Failed to send message.');
-    //   }
-    // }).catch(error => {
-    //   console.error('Error:', error);
-    //   alert('Failed to send message.');
-    // });
   };
 
   return (
-    <ContactContainer>
+    <ContactContainer className="fade-in animated-card">
       <h2>Contact Us</h2>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="slide-in-up">
         <Label htmlFor="name">Name</Label>
-        <Input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
+        <Input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
         <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
         <Label htmlFor="message">Message</Label>
-        <TextArea id="message" name="message" rows="4" value={formData.message} onChange={handleChange} required />
-        <SubmitButton type="submit">Submit</SubmitButton>
+        <TextArea
+          id="message"
+          name="message"
+          rows="4"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+        <SubmitButton type="submit" className="animated-btn">Send</SubmitButton>
       </Form>
     </ContactContainer>
   );
-};
+}
 
 export default ContactForm;

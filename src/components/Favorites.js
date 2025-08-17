@@ -25,16 +25,16 @@ const Favorites = () => {
 
   return (
     <FavoritesContainer>
-      <h2>Your Favorites</h2>
+      <h2 className="fade-in">Your Favorites</h2>
       {favorites.length === 0 ? (
         <p>No favorite destinations added yet.</p>
       ) : (
         favorites.map((destination) => (
-          <FavoriteItem key={destination.id}>
+          <FavoriteItem key={destination.id} className="animated-card slide-in-up">
             <h3>{destination.name}</h3>
             <FavoriteImage src={destination.image} alt={destination.name} />
             <p>{destination.description}</p>
-            <button onClick={() => removeFavorite(destination.id)}>
+            <button className="animated-btn" onClick={() => removeFavorite(destination.id)}>
               Remove from Favorites
             </button>
           </FavoriteItem>
