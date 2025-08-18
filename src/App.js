@@ -1,5 +1,5 @@
 // App.js
-import React from 'react';
+import React, { useState, useEffect } from 'react'; 
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import {
   Navbar, Nav,
-  NavDropdown, Carousel
+  NavDropdown, Carousel, Button
 } from 'react-bootstrap';
 import DestinationList from './components/DestinationList';
 import DestinationDetail from './components/DestinationDetail';
@@ -18,11 +18,30 @@ import { FavoritesProvider } from './components/FavoritesContext';
 import Travel from './components/Travel';
 import Destinations from './components/Destinations';
 import Experience from './components/Experience';
-
+import { authService } from './authentication/auth';
+import LoginPage from './authentication/LoginPage.js';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  // Listen to auth state
+  useEffect(() => {
+    const unsubscribe = authService.onAuthStateChanged((currentUser) => {
+      setUser(currentUser);
+    });
+    return unsubscribe;
+  }, []);
+
+
+  const handleLogout = async () => {
+    try {
+      await authService.signOut();
+    } catch (err) {
+      console.error(err);
+    }
+  };
   return (
     <FavoritesProvider>
       <Router>
@@ -54,6 +73,17 @@ const App = () => {
                 <Link to="/favorites" className="nav-link">
                   Favorites
                 </Link>
+                {/* ✅ Login/Logout Button */}
+                  {user ? (
+                <Button variant="outline-light" onClick={handleLogout}>
+                  Logout ({user.displayName || user.email})
+              </Button>
+              ) : (
+                <Link to="/login" className="btn btn-outline-light">
+                Login
+                </Link>
+              )}
+
               </Nav>
             </Navbar.Collapse>
           </Navbar>
@@ -107,6 +137,7 @@ const App = () => {
           
           <br />
           {}
+          
           <Routes>
             <RouteElement path="/" element={<DestinationList />} />
             <RouteElement path="/destination/:id" element={<DestinationDetail />} />
@@ -115,6 +146,7 @@ const App = () => {
             <RouteElement path="/travel" element={<Travel />} />
             <RouteElement path="/destinations/:id" element={<Destinations />} />
             <RouteElement path="/favorites" element={<Favorites />} />
+            <RouteElement path="/login" element={<LoginPage />} />
           </Routes>
           {/* Footer */}
           <div className="custom-footer">

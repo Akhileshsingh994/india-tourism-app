@@ -3,6 +3,7 @@ import { useFavorites } from './FavoritesContext';
 import styled from 'styled-components';
 
 const FavoritesContainer = styled.div`
+  text-align: center;
   max-width: 800px;
   margin: auto;
 `;
@@ -20,6 +21,16 @@ const FavoriteImage = styled.img`
   border-radius: 8px;
 `;
 
+const FavoriteButton = styled.button`
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 10px;
+`;
+
 const Favorites = () => {
   const { favorites, removeFavorite } = useFavorites();
 
@@ -34,9 +45,9 @@ const Favorites = () => {
             <h3>{destination.name}</h3>
             <FavoriteImage src={destination.image} alt={destination.name} />
             <p>{destination.description}</p>
-            <button className="animated-btn" onClick={() => removeFavorite(destination.id)}>
+            <FavoriteButton button className="animated-btn" onClick={() => removeFavorite(destination.id)}>
               Remove from Favorites
-            </button>
+            </FavoriteButton>
           </FavoriteItem>
         ))
       )}

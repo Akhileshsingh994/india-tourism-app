@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { db } from "../firebase/config.js";
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const ContactContainer = styled.div`
   max-width: 600px;
@@ -59,7 +61,7 @@ const ContactForm = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Simple validation
@@ -68,11 +70,19 @@ const ContactForm = () => {
       return;
     }
 
-    // For now, just display the form data in an alert
-    alert(`Name: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`);
+    try {
+      // Save to Firestore
+      await addDoc(collection(db, 'contactMessages'), {
+        ...formData,
+        createdAt: serverTimestamp()
+      });
 
-
-    // Here you can integrate with an API to handle form submission
+      alert('Message sent successfully!');
+      setFormData({ name: '', email: '', message: '' }); // clear form
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   return (
