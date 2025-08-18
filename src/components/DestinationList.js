@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import useDestinations from "./Destinations"; // 🔹 updated to fetch from Firestore
+import useDestinations from "./DestinationDetail"; // 🔹 updated to fetch from Firestore
 import { useFavorites } from "./FavoritesContext";
 
-// 🔹 Styles
+// Styles
 const List = styled.ul`
   list-style: none;
   padding: 0;
@@ -37,10 +36,10 @@ const Button = styled.button`
 `;
 
 const AddedButton = styled(Button)`
-  background: #2ecc71; /* Green color for "Added to Favorites" */
+  background: #2ecc71;
 `;
 
-// 🔹 Component
+// Component
 const DestinationList = () => {
   const { destinations, loading } = useDestinations(); // fetch from Firestore
   const { addFavorite, removeFavorite, favorites } = useFavorites();
@@ -86,15 +85,11 @@ const DestinationList = () => {
           key={destination.id}
           className="animated-card slide-in-up"
         >
-          <Link
-            to={`/destination/${destination.id}`}
-            style={{ textDecoration: "none", color: "#333" }}
-          >
+
             <Image src={destination.image} alt={destination.name} />
             <h3>{destination.name}</h3>
             <h5>{destination.bestTime}</h5>
             <h6>{destination.rating}</h6>
-          </Link>
           <p>{destination.description}</p>
           {addedToFavorites.has(destination.id) ? (
             <AddedButton

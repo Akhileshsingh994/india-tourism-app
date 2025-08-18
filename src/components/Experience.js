@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import styled from 'styled-components';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+import { db } from "../firebase/config.js";
 
 const ExperienceContainer = styled.div`
   max-width: 600px;
@@ -48,39 +50,34 @@ const SubmitButton = styled.button`
   font-size: 16px;
 `;
 
-const initialExperiences = [
-  {
-    id: 1,
-    name: 'Akhil Sharma',
-    location: 'Goa',
-    description: 'The beaches were stunning and the seafood was delicious! I enjoyed the vibrant nightlife and water sports.',
-    image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-  },
-  {
-    id: 2,
-    name: 'Priya Singh',
-    location: 'Jaipur',
-    description: 'Exploring the forts and palaces was like stepping back in time. The local markets were colorful and lively.',
-    image: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
-  },
-  {
-    id: 3,
-    name: 'Rahul Verma',
-    location: 'Kerala',
-    description: 'The backwaters were serene and the houseboat stay was unforgettable. Loved the lush greenery everywhere.',
-    image: 'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=400&q=80',
-  },
-];
 
 const Experience = () => {
-  const [experiences, setExperiences] = useState(initialExperiences);
+  const [experiences, setExperiences] = useState([]);
   const [form, setForm] = useState({
     name: '',
     location: '',
     description: '',
     image: '',
   });
-  const [ setValidated] = useState(false);
+
+
+  // fetch data from Firestore on mount
+  useEffect(() => {
+    const fetchExperiences = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'experiences'));
+        const data = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        // newest first
+        setExperiences(data.sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds));
+      } catch (error) {
+        console.error("Error fetching experiences: ", error);
+      }
+    };
+    fetchExperiences();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -95,22 +92,29 @@ const Experience = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setValidated(true);
+
     if (!form.name || !form.location || !form.description) return;
-    setExperiences([
-      {
+
+    try {
+      const newExp = {
         ...form,
-        id: experiences.length + 1,
         image:
           form.image ||
           'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
-      },
-      ...experiences,
-    ]);
-    setForm({ name: '', location: '', description: '', image: '' });
-    setValidated(false);
+        timestamp: serverTimestamp(),
+      };
+           // Save to Firestore
+      const docRef = await addDoc(collection(db, 'experiences'), newExp);
+
+      setExperiences([{ id: docRef.id, ...newExp }, ...experiences]);
+
+      // Reset form
+      setForm({ name: '', location: '', description: '', image: '' });
+    } catch (error) {
+      console.error("Error adding experience: ", error);
+    }
   };
 
   return (

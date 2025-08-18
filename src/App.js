@@ -11,7 +11,6 @@ import {
   NavDropdown, Carousel, Button
 } from 'react-bootstrap';
 import DestinationList from './components/DestinationList';
-import DestinationDetail from './components/DestinationDetail';
 import ContactForm from './components/ContactForm';
 import Favorites from './components/Favorites';
 import { FavoritesProvider } from './components/FavoritesContext';
@@ -140,11 +139,10 @@ const App = () => {
           
           <Routes>
             <RouteElement path="/" element={<DestinationList />} />
-            <RouteElement path="/destination/:id" element={<DestinationDetail />} />
             <RouteElement path="/contact" element={<ContactForm />} />
             <RouteElement path="/experience" element={<Experience />} />
             <RouteElement path="/travel" element={<Travel />} />
-            <RouteElement path="/destinations/:id" element={<Destinations />} />
+            <RouteElement path="/destinations" element={<Destinations />} />
             <RouteElement path="/favorites" element={<Favorites />} />
             <RouteElement path="/login" element={<LoginPage />} />
           </Routes>
