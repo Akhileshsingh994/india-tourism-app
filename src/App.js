@@ -10,7 +10,6 @@ import {
   Navbar, Nav,
   NavDropdown, Carousel, Button
 } from 'react-bootstrap';
-import DestinationList from './components/DestinationList';
 import ContactForm from './components/ContactForm';
 import Favorites from './components/Favorites';
 import { FavoritesProvider } from './components/FavoritesContext';
@@ -19,6 +18,7 @@ import Destinations from './components/Destinations';
 import Experience from './components/Experience';
 import { authService } from './authentication/auth';
 import LoginPage from './authentication/LoginPage.js';
+import Home from './components/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -132,13 +132,13 @@ const App = () => {
                 alt="Sixth slide"
               />
             </Carousel.Item>
-          </Carousel>
+          </Carousel> 
           
           <br />
           {}
           
           <Routes>
-            <RouteElement path="/" element={<DestinationList />} />
+            <RouteElement path="/" element={<Home />} />
             <RouteElement path="/contact" element={<ContactForm />} />
             <RouteElement path="/experience" element={<Experience />} />
             <RouteElement path="/travel" element={<Travel />} />

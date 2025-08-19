@@ -3,7 +3,6 @@ import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
 
-
 // Firebase configuration
 // Ensure you have set these environment variables in your .env file
   const firebaseConfig = {
