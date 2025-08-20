@@ -106,7 +106,7 @@ export const Rating = styled.div`
 `;
 
 export const FavoriteButton = styled.button`
-  background: ${props => props.isFavorite ? '#2ecc71' : '#3498db'};
+  background: ${props => props.$isFavorite ? '#2ecc71' : '#3498db'};
   color: white;
   border: none;
   padding: 8px 16px;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import useDestinations from './DestinationDetail';
-import { useFavorites } from './FavoritesContext';
+import useDestinations from '../DestinationHook';
+import { useFavorites } from '../FavoritesContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     Container,
@@ -22,7 +22,7 @@ import {
 
 
 const Destinations = () => {
-  const { destinations, loading } = useDestinations();
+  const { destinations = [], isLoading, error } = useDestinations();
   const { addFavorite, removeFavorite, favorites } = useFavorites();
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedRegion, setSelectedRegion] = useState('');
@@ -51,7 +51,7 @@ const Destinations = () => {
     }
   };
 
-  if (loading) {
+  if (isLoading) {
     return (
       <Container>
         <div className="text-center">
@@ -59,6 +59,16 @@ const Destinations = () => {
             <span className="visually-hidden">Loading...</span>
           </div>
           <p className="mt-3">Discovering amazing destinations...</p>
+        </div>
+      </Container>
+    );
+  }
+  if (error) {
+    return (
+      <Container>
+        <div className="text-center py-5">
+          <h3>Failed to load destinations</h3>
+          <p>{error.message}</p>
         </div>
       </Container>
     );
@@ -114,7 +124,7 @@ const Destinations = () => {
                     ⭐ {destination.rating || '4.5'}
                   </Rating>
                   <FavoriteButton
-                    isFavorite={isFavorite}
+                    $isFavorite={isFavorite}
                     onClick={() => handleToggleFavorite(destination)}
                   >
                     {isFavorite ? '❤️ Favorited' : '🤍 Add to Favorites'}

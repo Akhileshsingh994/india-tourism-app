@@ -10,15 +10,14 @@ import {
   Navbar, Nav,
   NavDropdown, Carousel, Button
 } from 'react-bootstrap';
-import ContactForm from './components/ContactForm';
+import ContactForm from './components/Contact/ContactForm.js';
 import Favorites from './components/Favorites';
 import { FavoritesProvider } from './components/FavoritesContext';
 import Travel from './components/Travel';
-import Destinations from './components/Destinations';
 import Experience from './components/Experience';
 import { authService } from './authentication/auth';
 import LoginPage from './authentication/LoginPage.js';
-import Home from './components/Home'
+import Home from './components/Home/Home'
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -61,9 +60,6 @@ const App = () => {
                 <NavDropdown title="Explore" id="basic-nav-dropdown">
                   <Link to="/travel" className="dropdown-item">
                     Travel
-                  </Link>
-                  <Link to="/Destinations" className="dropdown-item">
-                    Destinations
                   </Link>
                   <Link to="/experience" className="dropdown-item">
                     Experience
@@ -142,7 +138,6 @@ const App = () => {
             <RouteElement path="/contact" element={<ContactForm />} />
             <RouteElement path="/experience" element={<Experience />} />
             <RouteElement path="/travel" element={<Travel />} />
-            <RouteElement path="/destinations" element={<Destinations />} />
             <RouteElement path="/favorites" element={<Favorites />} />
             <RouteElement path="/login" element={<LoginPage />} />
           </Routes>
