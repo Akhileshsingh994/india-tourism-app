@@ -1,6 +1,7 @@
 import React, { useState , useEffect} from 'react';
 import styled from 'styled-components';
 import '../App.css';
+// import '../styles/animations.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from "../firebase/config.js";

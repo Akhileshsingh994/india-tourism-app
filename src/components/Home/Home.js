@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useDestinations from '../DestinationHook';
 import { useFavorites } from '../FavoritesContext';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../../styles/animations.css';
 import {
     Container,
     SearchBar,
@@ -104,11 +105,11 @@ const Destinations = () => {
         </FilterSelect>
       </SearchBar>
 
-      <DestinationsGrid>
+      <DestinationsGrid className="fade-in">
         {filteredDestinations.map((destination) => {
           const isFavorite = favorites.some(fav => fav.id === destination.id);
           return (
-            <DestinationCard key={destination.id}>
+            <DestinationCard key={destination.id} className="animated-card slide-in-up">
               <CardImage src={destination.image} alt={destination.name} />
               <CardContent>
                 <CardTitle>{destination.name}</CardTitle>
@@ -125,6 +126,7 @@ const Destinations = () => {
                   </Rating>
                   <FavoriteButton
                     $isFavorite={isFavorite}
+                    className="animated-btn"
                     onClick={() => handleToggleFavorite(destination)}
                   >
                     {isFavorite ? '❤️ Favorited' : '🤍 Add to Favorites'}
