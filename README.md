@@ -6,44 +6,44 @@ A modern, full-featured React web application for exploring and planning trips t
 ![Firebase](https://img.shields.io/badge/Firebase-12.1.0-orange.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## ✨ Features
+## Features
 
-### 🏠 Home & Discovery
+### Home & Discovery
 - **Browse Destinations**: Explore a curated collection of Indian tourist destinations
 - **Advanced Search**: Search destinations by name or description
 - **Smart Filtering**: Filter by region and best time to visit
 - **Destination Cards**: Beautiful cards with images, ratings, and descriptions
 - **Image Carousel**: Stunning visual showcase of India's beauty
 
-### ❤️ Favorites System
+### Favorites System
 - **Save Favorites**: Add destinations to your personal favorites list
 - **Real-time Sync**: Favorites are synced to Firebase Firestore in real-time
 - **Persistent Storage**: Your favorites are saved per user account
 - **Quick Access**: View and manage all your favorite destinations in one place
 
-### 🗺️ Travel Planning
+### Travel Planning
 - **Create Trips**: Plan your trips with custom names and dates
 - **Select Destinations**: Choose from your favorites to build itineraries
 - **Save Itineraries**: Store your trip plans in Firebase for future reference
 - **Date Management**: Set start and end dates for your trips
 
-### 📝 Experience Sharing
+### Experience Sharing
 - **Share Experiences**: Post your travel experiences with photos
 - **Community Feed**: Browse experiences shared by other travelers
 - **Image Upload**: Upload and share images from your travels
 - **Real-time Updates**: See new experiences as they're posted
 
-### 🔐 Authentication
+### Authentication
 - **Email/Password**: Sign up and login with email
 - **Google Sign-in**: Quick authentication with Google
 - **User Profiles**: Personalized experience with user accounts
 - **Protected Features**: Save trips and favorites require authentication
 
-### 📧 Contact
+### Contact
 - **Contact Form**: Reach out to the team with questions or feedback
 - **Message Storage**: All messages are stored securely in Firebase
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend Framework**: React 18.3.1
 - **Routing**: React Router DOM 6.24.0
@@ -56,14 +56,14 @@ A modern, full-featured React web application for exploring and planning trips t
 - **Data Fetching**: TanStack React Query 5.85.5
 - **Build Tool**: Create React App (react-scripts 5.0.1)
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before you begin, ensure you have the following installed:
 - **Node.js** (v14 or higher)
 - **npm** or **yarn**
 - **Firebase Account** (for backend services)
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the Repository
 
@@ -206,7 +206,7 @@ india-tourism-app/
 └── README.md
 ```
 
-## 🎯 Key Features Explained
+## Key Features Explained
 
 ### Real-time Favorites
 The favorites system uses Firebase Firestore's real-time listeners to keep your favorites synchronized across all devices. When you add or remove a favorite, it's instantly saved to the cloud.
@@ -225,7 +225,7 @@ Users can share their travel experiences with the community. Each experience inc
 - Description
 - Optional image upload
 
-## 🔒 Security Rules (Firestore)
+## Security Rules (Firestore)
 
 For production, set up proper Firestore security rules:
 
@@ -264,7 +264,7 @@ service cloud.firestore {
 }
 ```
 
-## 🚢 Deployment
+## Deployment
 
 ### Build for Production
 
@@ -302,7 +302,7 @@ firebase deploy
 - **Netlify**: Drag and drop the `build` folder or connect via Git
 - **GitHub Pages**: Use `gh-pages` package for deployment
 
-## 🧪 Testing
+## Testing
 
 Run the test suite:
 
@@ -310,14 +310,14 @@ Run the test suite:
 npm test
 ```
 
-## 📝 Available Scripts
+## Available Scripts
 
 - `npm start` - Start development server
 - `npm run build` - Build for production
 - `npm test` - Run tests
 - `npm run eject` - Eject from Create React App (irreversible)
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
@@ -328,18 +328,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 5. Open a Pull Request
 
 
-## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@yourusername](https://github.com/yourusername)
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Images from [Pixabay](https://pixabay.com/) and other free image sources
 - Firebase for backend services
 - React community for amazing tools and libraries
 
-## 📞 Support
+## Support
 
 For support, email akhilesh.singh9367@gmail.com or open an issue in the repository.
 
